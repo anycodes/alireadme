@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+
+<head>
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <!--====== Title ======-->
+    <title> Readme 编辑器 - Powered by Serverless Devs </title>
+    <link rel="stylesheet" href="https://www.devsapp.cn/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.devsapp.cn/static/css/style.css">
+    <link rel="stylesheet" href="https://www.devsapp.cn/markdown-editor/lib/material-icons.css">
+    <link rel="stylesheet" href="https://www.devsapp.cn/markdown-editor/lib/base16-light.css">
+    <link rel="stylesheet" href="https://www.devsapp.cn/markdown-editor/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="https://www.devsapp.cn/markdown-editor/lib/default.css">
+    <link rel="stylesheet" href="https://www.devsapp.cn/markdown-editor/lib/github-markdown.css">
+    <link rel="stylesheet" href="https://www.devsapp.cn/markdown-editor/lib/spell-checker.min.css">
+    <link rel="stylesheet" href="https://www.devsapp.cn/markdown-editor/lib/sweetalert.css">
+    <link rel="stylesheet" href="https://www.devsapp.cn/markdown-editor/lib/sweetalert.css">
+    <script type="text/javascript"
+            src="https://example-static.oss-cn-beijing.aliyuncs.com/editor/mootools-1.2.3-core-yc.js"></script>
+    <script type="text/javascript"
+            src="https://example-static.oss-cn-beijing.aliyuncs.com/editor/mootools-1.2.3.1-more.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/lib/markdown-it.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/lib/markdown-it-footnote.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/lib/highlight.pack.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/lib/emojify.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/codemirror/lib/codemirror.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/codemirror/overlay.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/codemirror/xml/xml.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/codemirror/markdown/markdown.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/codemirror/gfm/gfm.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/codemirror/javascript/javascript.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/codemirror/css/css.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/codemirror/htmlmixed/htmlmixed.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/codemirror/lib/util/continuelist.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/lib/spell-checker.min.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/lib/rawinflate.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/lib/rawdeflate.js"></script>
+    <script src="https://www.devsapp.cn/markdown-editor/lib/sweetalert.min.js"></script>
+    <style type="text/css">
+        .clear {
+            clear: both;
+        }
+
+        #col_wrapper {
+            border: 1px solid #0066cc;
+            position: relative;
+        }
+
+        #input {
+            position: absolute;
+            width: 50%;
+            background: #ECECEC;
+            height: 100%
+        }
+
+        #mddata {
+            position: absolute;
+            left: 50%;
+            width: 50%;
+            background: #EEEEEE;
+            height: 100%
+        }
+
+        #textareaInput {
+            padding: 0 0 0 0px;
+
+        }
+
+        .content {
+            margin: 5px;
+        }
+
+        .resize {
+            position: absolute;
+            top: 0px;
+            right: -14px;
+            height: 300px;
+            width: 3px;
+            cursor: col-resize;
+            z-index: 200;
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border: 1px solid #666;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
+    <style>
+        .markdown-body ol {
+            list-style-type: decimal;
+        }
+
+        .markdown-body ul {
+            list-style-type: disc;
+        }
+    </style>
+</head>
+<body>
+<header class="header-three sticky-header" style="padding-top: 8px; padding-bottom: 8px">
+    <div class="header-navigation">
+        <div class="container-fluid d-flex align-items-center justify-content-between container-1470">
+            <div class="header-left">
+                <h1 href="#" style="color: white">Serverless Devs</h1>
+            </div>
+            <div class="header-right d-flex align-items-center justify-content-end">
+                <div class="site-nav-menu">
+                    <ul class="primary-menu">
+                        <li>
+                            <a class="nav-link" href="https://www.serverless-devs.com">Serverless Devs</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="https://www.devsapp.cn">Serverless Regsitry</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="https://i.serverless-devs.com">iServerless 社区</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="https://www.github.com/serverless-devs/serverless-devs"
+                               class="search-icon">Gtihub
+                                仓库</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div style="background-color: #007bff; height: 65px; ">
+
+</div>
+<!--====== Banner Start ======-->
+<section>
+    <div id="col_wrapper">
+        <div id="input" class="drag_width" style="background-color: white;">
+            <textarea class="content" style="background-color: white; margin: 15px; resize: none" id="textareaInput"
+                      oninput="toOutput()">{tempMarkdown}</textarea>
+            <div id="resize" class="resize"></div>
+        </div>
+        <div id="mddata" class="drag_width markdown-body" style="background-color: white;margin: 15px; overflow: auto">
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</section>
+
+
+<div style="background-color: #007bff; height: 75px; z-index: -300; margin-top: 20px; width: 100%">
+    <span style="width: 20%; margin-top: 20px; margin-left: 20px"><input style="height: 30px; width: 100%;" type="text"
+                                                                         id="source" onchange="getCodePre()"
+                                                                         placeholder="项目源代码地址"></span>
+    <span style="width: 20%; margin-top: 20px; margin-left: 20px"><input style="height: 30px; width: 100%;" type="text"
+                                                                         id="preview" onchange="getCodePre()"
+                                                                         placeholder="项目预览地址"></span>
+    <span style="margin-top: 20px; margin-left: 20px"><input type="checkbox" onclick="setMdType()" id="mdtype"/><font
+            color="white">专注模式</font></span>
+    <span style="margin-top: 20px; margin-left: 20px; float: right; margin-right: 20px"><button
+            onclick="saveMd()">保存</button></span>
+</div>
+
+
+<script>
+
+    document.getElementById('col_wrapper').style.height = window.innerHeight - 160 + "px"
+    document.getElementById('input').style.height = window.innerHeight - 160 + "px"
+    document.getElementById('mddata').style.height = window.innerHeight - 160 + "px"
+    document.getElementById('resize').style.height = window.innerHeight - 140 + "px"
+    document.getElementById('textareaInput').style.height = window.innerHeight - 160 + "px"
+
+    let defaultMarkdown = `{baseMarkdown}`
+
+    var md = markdownit({
+        html: true,
+        highlight: function (code, lang) {
+            if (lang && hljs.getLanguage(lang)) {
+                try {
+                    return hljs.highlight(lang, code).value;
+                } catch (e) {
+                }
+            }
+            return '';
+        }
+    }).use(markdownitFootnote);
+
+    // 拖拽事件
+    window.addEvent('domready', function () {
+        var col_input = $('input');
+        var col_output = $('mddata');
+        var w_snap = 5;
+        var w_min = 120;
+        var w_min_c = w_min - 2;
+
+        col_input.makeResizable({
+            handle: col_input.getChildren('.resize'),
+            grid: w_snap,
+            modifiers: {x: 'width', y: false},
+            limit: {x: [w_min, null]},
+            onStart: function (el) {
+                w_avail = document.body.clientWidth - w_min;
+            },
+            onDrag: function (el) {
+                if (el.getWidth() >= w_avail) {
+                    el.setStyle("width", w_avail);
+                }
+                col_output.setStyle("left", col_input.getWidth());
+                w_center = document.body.clientWidth - col_input.getWidth();
+                col_output.setStyle("width", w_center.toInt() - 2);
+            },
+            onComplete: function () {
+            }
+        });
+
+        col_output.makeResizable({
+            handle: col_output.getChildren('.resize'),
+            grid: w_snap,
+            modifiers: {x: 'width', y: false},
+            limit: {x: [w_min_c, null]},
+
+            onStart: function (el) {
+                w_start = el.getWidth();
+                w_avail = document.body.clientWidth - col_input.getWidth() - w_min - 2;
+            },
+            onDrag: function (el) {
+                if (el.getWidth() >= w_avail) {
+                    el.setStyle("width", w_avail);
+                } else if (el.getWidth() == w_min_c) {
+                    el.setStyle("width", w_min_c);
+                }
+
+                l_new = col_left.getWidth() + col_center.getWidth();
+                col_right.setStyle("left", l_new.toInt());
+
+                w_new = document.body.clientWidth - col_left.getWidth() - col_center.getWidth();
+                col_right.setStyle("width", w_new.toInt());
+            },
+            onComplete: function () {
+            }
+
+        });
+    });
+
+    // 粘贴事件
+    document.addEventListener('paste', function (event) {
+        if (event.clipboardData || event.originalEvent) {
+            var clipboardData = (event.clipboardData || event.originalEvent.clipboardData || window.clipboardData);
+            if (clipboardData.items) {
+                var items = clipboardData.items,
+                    len = items.length,
+                    blob = null;
+                for (var i = 0; i < len; i++) {
+                    if (items[i].type.indexOf("image") !== -1) {
+                        blob = items[i].getAsFile();
+                    }
+                }
+                if (blob !== null) {
+                    var reader = new FileReader();
+                    reader.onload = function (event) {
+                        var base64_str = event.target.result
+                        const randomText = randomString(10)
+                        getValue('textareaInput', `!()[uploading?${randomText}]`)
+                        uploadPhoto(base64_str, randomText)
+                    }
+                    reader.readAsDataURL(blob);
+                }
+            }
+        }
+    })
+
+    // 初始化markdown
+    function init(tempMarkdown) {
+        var output = document.getElementById('mddata');
+        output.innerHTML = md.render(tempMarkdown);
+    }
+
+    // 获取随机字符串
+    function randomString(len) {
+        len = len || 32;
+        var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+        /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+        var maxPos = $chars.length;
+        var randomText = '';
+        for (i = 0; i < len; i++) {
+            randomText += $chars.charAt(Math.floor(Math.random() * maxPos));
+        }
+        return randomText;
+    }
+
+    // 粘贴图片后，插入
+    function getValue(objid, str) {
+        var myField = document.getElementById("" + objid);
+        //IE浏览器
+        if (document.selection) {
+            myField.focus();
+            sel = document.selection.createRange();
+            sel.text = str;
+            sel.select();
+        }
+
+        //火狐/网景 浏览器
+        else if (myField.selectionStart || myField.selectionStart == '0') {
+            //得到光标前的位置
+            var startPos = myField.selectionStart;
+            //得到光标后的位置
+            var endPos = myField.selectionEnd;
+            // 在加入数据之前获得滚动条的高度
+            var restoreTop = myField.scrollTop;
+            myField.value = myField.value.substring(0, startPos) + str + myField.value.substring(endPos, myField.value.length);
+            //如果滚动条高度大于0
+            if (restoreTop > 0) {
+                myField.scrollTop = restoreTop;
+            }
+            myField.focus();
+            myField.selectionStart = startPos + str.length;
+            myField.selectionEnd = startPos + str.length;
+        } else {
+            myField.value += str;
+            myField.focus();
+        }
+    }
+
+    // 保存markdown
+    function saveMd() {
+        const xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+        xmlhttp.open("POST", '/save', false);
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                const result = xmlhttp.responseText
+                if (result.includes('error')) {
+                    alert(result)
+                } else {
+                    alert('saved successfully')
+                }
+            }
+        }
+        xmlhttp.setRequestHeader("Content-type", "text/plain");
+        xmlhttp.send(document.getElementById('textareaInput').value);
+    }
+
+    // 上传图片
+    function uploadPhoto(photo, randomText) {
+        const xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+        xmlhttp.open("POST", '/image', false);
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                const result = xmlhttp.responseText
+                if (result.includes('error')) {
+                    alert(result)
+                } else {
+                    const textarea = document.getElementById('textareaInput')
+                    textarea.value = textarea.value.replace(`!()[uploading?${randomText}]`, `![](${result})`)
+                }
+            }
+        }
+        xmlhttp.setRequestHeader("Content-type", "text/plain");
+        xmlhttp.send(photo);
+    }
+
+    // 获取预览/源代码
+    function getCodePre() {
+        const sourceData = document.getElementById('source').value || ''
+        const previewData = document.getElementById('preview').value || ''
+        const source = sourceData ? `- [😼 源代码](${sourceData})` : ''
+        const preview = previewData ? `- [👀 项目预览](${previewData})` : ''
+        const baseCodePre = sourceData || previewData ? `# 代码 & 预览
+
+${source}
+${preview}
+        ` : ''
+        defaultMarkdown = defaultMarkdown.replace(/<codepre>[^>]+<\/codepre>/mg, `<codepre>${baseCodePre}</codepre>`)
+        var output = document.getElementById('codepre');
+        output.innerHTML = md.render(baseCodePre);
+        emojify.run(output)
+    }
+
+    // 输出markdown
+    function toOutput() {
+        var output = document.getElementById('flushContent');
+        output.innerHTML = md.render(document.getElementById('textareaInput').value);
+        emojify.run(output)
+    }
+
+    // 更新专注模式
+    function setMdType() {
+        if (document.getElementById('mdtype').checked) {
+            init(`<appdetail id="flushContent"></appdetail>`)
+            toOutput()
+        } else {
+            init(defaultMarkdown)
+            toOutput()
+        }
+    }
+
+    init(defaultMarkdown)
+    toOutput()
+
+</script>
+
+</body>
+</html>

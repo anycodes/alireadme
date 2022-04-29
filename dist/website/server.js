@@ -20,7 +20,7 @@ function getService(service) {
         serviceTableCenter = serviceTableCenter + " --- |  "
         serviceTableContent = serviceTableContent + service[serviceKeys[i]].Authorities.join("</br>") + " |  "
     }
-    return serviceTableHeader == '| ' ? `` : `## 前期准备
+    return serviceTableHeader == serviceKeys.length==0 ? `` : `## 前期准备
 使用该项目，推荐您拥有以下的产品权限 / 策略：
 
 ${serviceTableHeader}   

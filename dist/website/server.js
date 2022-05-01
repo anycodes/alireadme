@@ -7,7 +7,6 @@ const request = require('request');
 const app = express();
 
 
-
 var baseUrl
 
 function getService(service) {
@@ -20,7 +19,7 @@ function getService(service) {
         serviceTableCenter = serviceTableCenter + " --- |  "
         serviceTableContent = serviceTableContent + service[serviceKeys[i]].Authorities.join("</br>") + " |  "
     }
-    return serviceTableHeader == serviceKeys.length==0 ? `` : `## 前期准备
+    return serviceKeys.length == 0 ? `` : `## 前期准备
 使用该项目，推荐您拥有以下的产品权限 / 策略：
 
 ${serviceTableHeader}   
@@ -59,16 +58,37 @@ app.get('/', (req, res) => {
             baseIndexHtml = fs.readFileSync(`${__dirname}/resouce/index.html`, 'utf8')
             let baseMarkdown = getMarkdown(publish.packageName, publish.description, publish.serviceTable)
             let tempMarkdown
-            try{
-                const tempMarkdownSource = fs.readFileSync(path.join(baseUrl, 'readme.md'), 'utf8')
+            let sourceCode
+            let previewUrl
+            let tempMarkdownSource
+            try {
+                tempMarkdownSource = fs.readFileSync(path.join(baseUrl, 'readme.md'), 'utf8')
+            } catch (e) {
+                tempMarkdownSource = ''
+            }
+            try {
                 tempMarkdown = tempMarkdownSource.match(/<appdetail id="flushContent">[^>]+<\/appdetail>/mg)
                 tempMarkdown = tempMarkdown[0].replace('<appdetail id="flushContent">\n', '').replace('</appdetail>', '')
-            }catch (e) {
+            } catch (e) {
                 tempMarkdown = '# 应用详情'
             }
+            try {
+                sourceCode = (tempMarkdownSource.match(/源代码]\([^>]+\)/mg)[0] || '').replace('源代码](', '').replace(')', '')
+            } catch (e) {
+                sourceCode = ''
+            }
+            try {
+                previewUrl = (tempMarkdownSource.match(/项目预览]\([^>]+\)/mg)[0] || '').replace('项目预览](', '').replace(')', '')
+            } catch (e) {
+                previewUrl = ''
+            }
+
             baseMarkdown = baseMarkdown.replace('{appdetail}', '')
+            baseMarkdown = baseMarkdown.replace('{codepre}', '')
             baseIndexHtml = baseIndexHtml.replace('{baseMarkdown}', baseMarkdown)
             baseIndexHtml = baseIndexHtml.replace('{tempMarkdown}', tempMarkdown)
+            baseIndexHtml = baseIndexHtml.replace('{previewUrl}', previewUrl)
+            baseIndexHtml = baseIndexHtml.replace('{sourceCode}', sourceCode)
         } catch (e) {
             baseIndexHtml = `Error: ${e.message}`
         }
@@ -129,7 +149,7 @@ app.post('/image', function (req, res) {
                                     "message": error.message
                                 })
                             } else {
-                                if (response.body.includes("Error")){
+                                if (response.body.includes("Error")) {
                                     res.send({
                                         "status": "error",
                                         "message": "unknown error, please try again later"
@@ -158,10 +178,14 @@ app.post('/image', function (req, res) {
 app.post('/save', function (req, res) {
     let result
     try {
-        const readme = req.body
+        const body = req.body.split('----serverless-devs-split-token----')
+        const readme = body[1]
+        const codepre = body[0] || ""
         const publish = getPublish()
         let baseMarkdown = getMarkdown(publish.packageName, publish.description, publish.serviceTable)
+        baseMarkdown = baseMarkdown.replace(/\\`/g, '`')
         baseMarkdown = baseMarkdown.replace('{appdetail}', readme)
+        baseMarkdown = baseMarkdown.replace('{codepre}', codepre)
         fs.writeFileSync(path.join(baseUrl, 'readme.md'), baseMarkdown)
         result = {
             "status": "success"
